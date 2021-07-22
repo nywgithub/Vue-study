@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const app = Vue.createApp({
+            template: `<child />`,
+        });
+        app.component('child', {
+            template: `
+                <div @click="handleClick">child</div>
+            `,
+            setup(props, context) {
+                const {
+                    attrs,
+                    slots,
+                    emit
+                } = context;
+                //attrs : None-props属性
+                //slots : 插槽
+                //emit : 同this.$emit('事件')
+                function handleClick() {
+                    emit('change')
+                }
+                return {
+                    handleClick
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

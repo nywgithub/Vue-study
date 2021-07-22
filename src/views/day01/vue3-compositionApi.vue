@@ -21,12 +21,22 @@ const App = {
   // 调用时刻是初始化属性props确定后，beforeCreate之前
   setup() {
     const count2 = ref(1)
+    //ref 处理基础类型的数据
     // 响应化：接收一个对象，返回一个响应式的代理对象
+
+
+    //reactive 处理非基础类型数据正常
     const state = reactive({
       count: 1,
       // computed()返回一个不可变的响应式引用对象 
       // 它封装了getter的返回值 
       doubleCount: computed(() => state.count * 2)
+    })
+
+    // 将对象内的属性变为响应式
+    const demo = toRefs({
+      name: 'nyw',
+      age: 18
     })
     watch(
       () => state.count,
